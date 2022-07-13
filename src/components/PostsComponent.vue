@@ -1,6 +1,7 @@
 <template>
-    <div class="post">        
+    <div class="post" @click="favoritePost(post.id)">        
         <h1>@{{username}}</h1>
+        <h3>{{post.title}}</h3>
         <p>{{post.content}}</p>
     </div>
 </template>
@@ -17,6 +18,11 @@ export default {
             type: String,
             required: true
         }
+    },
+    methods: {
+        favoritePost(id){
+            this.$emit('favorite',id)
+        }
     }
 }
 </script>
@@ -30,6 +36,7 @@ export default {
     border-radius: 8px;
     box-sizing: border-box;
     transition: all ease-in-out 0.3s;
+    cursor: pointer;
 }
 .post:hover{
     transform: scale(0.9,0.9);
